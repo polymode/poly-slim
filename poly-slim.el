@@ -3,7 +3,7 @@
 ;; Author: Siavash Sajjadi and Vitalie Spinu
 ;; Maintainer: Vitalie Spinu
 ;; Version: 0.1
-;; Package-Requires: ((emacs "25") (polymode "0.1") (slim-mode 1.1))
+;; Package-Requires: ((emacs "25") (polymode "0.1") (slim-mode "1.1"))
 ;; URL: https://github.com/polymode/poly-slim
 ;; Keywords: emacs
 ;;
