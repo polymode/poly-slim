@@ -36,6 +36,12 @@
 
 (require 'polymode)
 (require 'ruby-mode)
+(require 'slim-mode)
+
+;; (require 'css-mode)
+;; (require 'scss-mode)
+;; (require 'coffee-mode)
+;; (require 'markdown-mode)
 
 (defconst poly-slim-engines (regexp-opt '("ruby" "javascript" "css" "sass" "scss"
                                           "less" "coffe" "markdown" "textile" "rdoc")))
@@ -43,8 +49,8 @@
 (defcustom pm-host/slim
   (pm-host-chunkmode :object-name "slim"
                      :mode 'slim-mode)
-  "Slim host chunkmode."
-  :group 'hostmodes
+  "slim host chunkmode"
+  :group 'poly-host-modes
   :type 'object)
 
 ;; https://github.com/slim-template/slim/blob/master/README.md#embedded-engines-markdown-
@@ -59,7 +65,7 @@
   "Slim code block.
 Slim code blocks are defined by the same level of
 indentation (like python)."
-  :group 'innermodes
+  :group 'poly-inner-modes
   :type 'object)
 
 ;;;###autoload  (autoload 'poly-slim-mode "poly-slim")
@@ -67,6 +73,6 @@ indentation (like python)."
   :hostmode 'pm-host/slim
   :innermodes '(pm-inner/slim-code-block))
 
+(add-to-list 'auto-mode-alist '("\\.slim$" . poly-slim-mode))
 
 (provide 'poly-slim)
-;;; poly-slim.el ends here
