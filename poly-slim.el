@@ -47,7 +47,7 @@
                                           "less" "coffe" "markdown" "textile" "rdoc")))
 
 (defcustom pm-host/slim
-  (pm-host-chunkmode :object-name "slim"
+  (pm-host-chunkmode :name "slim"
                      :mode 'slim-mode)
   "slim host chunkmode"
   :group 'poly-host-modes
@@ -55,7 +55,7 @@
 
 ;; https://github.com/slim-template/slim/blob/master/README.md#embedded-engines-markdown-
 (defcustom pm-inner/slim-code-block
-  (pm-inner-auto-chunkmode :object-name "slim-code-block"
+  (pm-inner-auto-chunkmode :name "slim-code-block"
                            ;; not in comment
                            :head-matcher (cons (format "^[^/]*?\\(%s.*?:\\)" poly-slim-engines) 1)
                            :tail-matcher #'pm-same-indent-tail-matcher
