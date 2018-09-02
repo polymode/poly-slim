@@ -48,7 +48,11 @@
 
 (defcustom pm-host/slim
   (pm-host-chunkmode :name "slim"
-                     :mode 'slim-mode)
+                     :mode 'slim-mode
+                     ;; temporary
+                     :protect-font-lock t
+                     :protect-syntax t
+                     :protect-indent t)
   "slim host chunkmode"
   :group 'poly-host-modes
   :type 'object)
