@@ -54,7 +54,7 @@
                      :protect-syntax t
                      :protect-indent t)
   "slim host chunkmode"
-  :group 'poly-host-modes
+  :group 'poly-hostmodes
   :type 'object)
 
 ;; https://github.com/slim-template/slim/blob/master/README.md#embedded-engines-markdown-
@@ -69,7 +69,7 @@
   "Slim code block.
 Slim code blocks are defined by the same level of
 indentation (like python)."
-  :group 'poly-inner-modes
+  :group 'poly-innermodes
   :type 'object)
 
 ;;;###autoload  (autoload 'poly-slim-mode "poly-slim")
