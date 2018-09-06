@@ -5,7 +5,7 @@
 (require 'ruby-mode)
 (require 'slim-mode)
 
-(require 'polymode-test)
+(require 'polymode-test-utils)
 (require 'poly-slim)
 
 ;; fixme: add indent tests
@@ -23,9 +23,9 @@
 (ert-deftest poly-slim/spans-at-borders ()
   (pm-test-run-on-file poly-slim-mode "slim.slim"
     (pm-map-over-spans
-     (lambda ()
-       (let* ((sbeg (nth 1 *span*))
-              (send (nth 2 *span*))
+     (lambda (span)
+       (let* ((sbeg (nth 1 span))
+              (send (nth 2 span))
               (range1 (pm-innermost-range sbeg))
               (range2 (pm-innermost-range send)))
          (should (eq sbeg (car range1)))
@@ -36,8 +36,8 @@
 (ert-deftest poly-slim/spans-at-narrowed-borders ()
   (pm-test-run-on-file poly-slim-mode "slim.slim"
     (pm-map-over-spans
-     (lambda ()
-       (pm-with-narrowed-to-span *span*
+     (lambda (span)
+       (pm-with-narrowed-to-span span
          (let* ((range1 (pm-innermost-range (point-min)))
                 (range2 (pm-innermost-range (point-max))))
            (should (eq (car range1) (point-min)))
