@@ -43,40 +43,36 @@
 ;; (require 'coffee-mode)
 ;; (require 'markdown-mode)
 
+(define-obsolete-variable-alias 'pm-host/slim 'poly-slim-hostmode "v0.2")
+(define-obsolete-variable-alias 'pm-inner/slim-code-block 'poly-slim-code-block-innermode "v0.2")
+
 (defconst poly-slim-engines (regexp-opt '("ruby" "javascript" "css" "sass" "scss"
                                           "less" "coffe" "markdown" "textile" "rdoc")))
 
-(defcustom pm-host/slim
-  (pm-host-chunkmode :name "slim"
-                     :mode 'slim-mode
-                     ;; temporary
-                     :protect-font-lock t
-                     :protect-syntax t
-                     :protect-indent t)
-  "slim host chunkmode"
-  :group 'poly-hostmodes
-  :type 'object)
+(define-hostmode poly-slim-hostmode
+  :mode 'slim-mode
+  ;; temporary
+  :protect-font-lock t
+  :protect-syntax t
+  :protect-indent t)
 
 ;; https://github.com/slim-template/slim/blob/master/README.md#embedded-engines-markdown-
-(defcustom pm-inner/slim-code-block
-  (pm-inner-auto-chunkmode :name "slim-code-block"
-                           ;; not in comment
-                           :head-matcher (cons (format "^[^/]*?\\(%s.*?:\\)" poly-slim-engines) 1)
-                           :tail-matcher #'pm-same-indent-tail-matcher
-                           :head-mode 'slim-mode
-                           :indent-offset 4
-                           :mode-matcher "[^ \t:]+")
+(define-auto-innermode poly-slim-code-block-innermode nil
   "Slim code block.
 Slim code blocks are defined by the same level of
 indentation (like python)."
-  :group 'poly-innermodes
-  :type 'object)
+  ;; not in comment
+  :head-matcher (cons (format "^[^/]*?\\(%s.*?:\\)" poly-slim-engines) 1)
+  :tail-matcher #'pm-same-indent-tail-matcher
+  :head-mode 'slim-mode
+  :indent-offset 4
+  :mode-matcher "[^ \t:]+")
 
 ;;;###autoload  (autoload 'poly-slim-mode "poly-slim")
 (define-polymode poly-slim-mode
-  :hostmode 'pm-host/slim
-  :innermodes '(pm-inner/slim-code-block))
+  :hostmode 'poly-slim-hostmode
+  :innermodes '(poly-slim-code-block-innermode))
 
-(add-to-list 'auto-mode-alist '("\\.slim$" . poly-slim-mode))
+(add-to-list 'auto-mode-alist '("\\.slim\\'" . poly-slim-mode))
 
 (provide 'poly-slim)

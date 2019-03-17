@@ -19,7 +19,6 @@
     ((insert-new-line ("## Subheading" end))
      (insert "\n"))))
 
-
 (ert-deftest poly-slim/spans-at-borders ()
   (pm-test-run-on-file poly-slim-mode "slim.slim"
     (pm-map-over-spans
